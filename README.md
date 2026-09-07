@@ -1,17 +1,26 @@
 # Chan and Jeliazkov (2009): MATLAB Examples
 
-MATLAB code illustrating the precision sampler from:
+MATLAB code illustrating the precision sampler of:
 
 > Chan, J. C. C. and Jeliazkov, I. (2009). Efficient Simulation and Integrated
 > Likelihood Estimation in State Space Models. *International Journal of
 > Mathematical Modelling and Numerical Optimisation*, 1(1/2), 101–120.
 
-The paper develops a sparse / band-matrix precision sampler that simulates
-the latent states of a linear Gaussian state space model in one block,
-avoiding the filter–smoother recursions of the conventional Kalman approach.
-The three scripts below are stand-alone applications of that algorithm to
-state space models commonly used in macroeconomics; they are not
-replications of the paper itself.
+The paper develops a band-matrix precision sampler that simulates the latent
+states of a linear Gaussian state space model in a single block, in place of
+the filter–smoother recursions of the conventional Kalman approach. The three
+scripts here apply that algorithm to state space models in common use in
+macroeconomics. They illustrate the method; they do not replicate the results
+in the paper.
+
+The package distributed with the paper is archived separately, in
+[bvar-toolkit](https://github.com/joshuaccchan/bvar-toolkit). The original
+`sp_code` files are kept there verbatim under
+[`replications/chan_jeliazkov2009_statespace/`](https://github.com/joshuaccchan/bvar-toolkit/tree/main/replications/chan_jeliazkov2009_statespace),
+and
+[`examples/ex01_precision_sampler.m`](https://github.com/joshuaccchan/bvar-toolkit/blob/main/examples/ex01_precision_sampler.m)
+in the same repository derives the sampler from the banded precision matrix and
+checks its draws against a Kalman smoother.
 
 ## Contents
 
@@ -32,7 +41,7 @@ replications of the paper itself.
 
 ## Running
 
-Open MATLAB in the repo directory and run any of:
+Open MATLAB in the repository directory and run any of:
 
 ```matlab
 >> UC
@@ -40,10 +49,10 @@ Open MATLAB in the repo directory and run any of:
 >> DFM
 ```
 
-Each script is self-contained: it loads its data, runs a Gibbs sampler
-(10,000 or 20,000 post-burn-in draws using the precision sampler from the
-paper), and produces the figures used to illustrate the method. The random
-seed is fixed (`rng(42)`) so results are reproducible across runs.
+Each script is self-contained. It loads its data, runs a Gibbs sampler of
+10,000 or 20,000 draws after the burn-in period, drawing the states with the
+precision sampler of the paper, and produces the figures that illustrate the
+method. The seed is fixed at `rng(42)`, so the results are reproducible.
 
 ## Citation
 
